@@ -45,11 +45,9 @@ let currentKeyMap = keyMaps[inputScheme];
 let currentLevel = 1;
 let currentLevelConfig = null;
 let stratsDoneThisLevel = 0;
-let perfectRound = true;
 
 let totalScore = 0;
 let levelScore = 0;
-let levelTimeBonus = 0;
 let levelPerfect = true;
 
 // screen-game
@@ -169,9 +167,7 @@ function startGame() {
   currentLevel = 1;
   levelScore = 0;
   stratsDoneThisLevel = 0;
-  levelTimeBonus = 0;
   levelPerfect = true;
-  perfectRound = true;
   currentLevelConfig = levelConfig(currentLevel);
   showLevelIntro();
 }
@@ -188,7 +184,6 @@ function showLevelIntro() {
 function startLevel() {
   levelScore = 0;
   stratsDoneThisLevel = 0;
-  levelTimeBonus = 0;
   levelPerfect = true;
   isRunning = true;
 
@@ -236,11 +231,7 @@ function handleInput(key) {
     renderSequence(currentStrat.sequence);
     if (inputIndex === currentStrat.sequence.length) {
       isRunning = false;
-      const timeBonus = Math.floor(timeLeft / 1000) * 5;
-      const multiplier = Math.min(1 + (currentLevel - 1) * 0.03, 4.0);
-      const stratScore = Math.floor(timeBonus * multiplier);
-      levelTimeBonus += timeBonus;
-      levelScore += stratScore;
+      const stratScore = currentStrat.sequence.length * 10;
       totalScore += stratScore;
       stratsDoneThisLevel++;
       renderHUD();
@@ -274,15 +265,14 @@ function endLevel() {
   isRunning = false;
 
   const roundBonus = 75 + 25 * (currentLevel - 1);
+  const timeBonus = Math.floor(timeLeft / 1000) * 10;
+  const perfectBonus = levelPerfect ? 100 : 0;
+
+  totalScore += roundBonus + timeBonus + perfectBonus;
+
+  lcTimeEl.textContent = timeBonus;
   lcRoundEl.textContent = roundBonus;
-  totalScore += roundBonus;
-
-  lcTimeEl.textContent = levelTimeBonus;
-  const levelPerfectBonus = levelPerfect ? 100 : 0;
-
-  totalScore += levelPerfectBonus;
-  levelScore += levelPerfectBonus;
-  lcPerfectEl.textContent = levelPerfectBonus;
+  lcPerfectEl.textContent = perfectBonus;
   lcTotalScoreEl.textContent = totalScore;
   showScreen("levelcomplete");
 
