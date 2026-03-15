@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Stratagem Hero</title>
+        <link rel="stylesheet" href="style.css">
+        <link
+            href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&display=swap"
+            rel="stylesheet">
+    </head>
+
+    <body>
+        <div id="screen-start" class="screen">
+            <h1>Stratagem Hero</h1>
+            <p>High Score: <span id="start-high-score"></span></p>
+            <button id="start-btn">Start</button>
+            <button id="btn-arrows">Arrow Keys</button>
+            <button id="btn-wasd">WASD</button>
+        </div>
+
+        <div id="screen-levelintro" class="screen">
+            <div id="level-num"></div>
+            <div id="cat"></div>
+        </div>
+
+        <div id="screen-game" class="screen">
+            <div id="game-header">
+                <div id="round-display">
+                    <div id="round-label">Round <span
+                            id="round-num"></span></div>
+                </div>
+
+                <div id="strat-center">
+                    <div id="strat-icon-queue">
+                        <div id="strat-icon-box">
+                            <img id="strat-icon" src alt>
+                        </div>
+                        </div>
+                        <div id="strat-name"></div>
+                        <div id="sequence"></div>
+                        <div id="timer-track">
+                            <div id="timer-bar"></div>
+                        </div>
+                    </div>
+                    <div id="score-display">
+                        <div id="game-total-score"></div>
+                        <div id="score-label">SCORE</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="screen-levelcomplete" class="screen">
+            <div id="lc-content">
+                <div class="lc-row">
+                    <span class="lc-label">Round Bonus</span>
+                    <span class="lc-value" id="lc-round-bonus"></span>
+                </div>
+                <div class="lc-row">
+                    <span class="lc-label">Time Bonus</span>
+                    <span class="lc-value" id="lc-time-bonus"></span>
+                </div>
+                <div class="lc-row">
+                    <span class="lc-label">Perfect Bonus</span>
+                    <span class="lc-value" id="lc-perfect-bonus"></span>
+                </div>
+                <div class="lc-row lc-total">
+                    <span class="lc-label">Total Score</span>
+                    <span class="lc-value" id="lc-total-score"></span>
+                </div>
+            </div>
+        </div>
+
+        <div id="screen-gameover" class="screen">
+            <h2>Mission Failed</h2>
+            <p>Total Score: <span id="go-total-score"></span></p>
+            <p>High Score: <span id="go-high-score"></span></p>
+            <button id="retry-btn">Try Again</button>
+        </div>
+
+        <script src="game.js"></script>
+    </body>
+</html>

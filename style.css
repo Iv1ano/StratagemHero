@@ -1,0 +1,277 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Barlow Condensed", sans-serif;
+  background: #0d0d0d;
+  color: white;
+}
+
+/* ---- SCREEN VISIBILITY ---- */
+/* all screens hidden by default */
+.screen {
+  display: none;
+}
+
+/* all active screens share same base layout */
+.screen.active {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+  padding: 40px;
+}
+
+/* ---- GAME SCREEN ---- */
+#game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  padding: 16px 40px;
+  margin-bottom: 24px;
+}
+
+#strat-center {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+#strat-icon-queue {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: 4px;
+}
+
+#strat-icon-box {
+  width: 275px;
+  height: 275px;
+  min-width: 275px;
+  border: 2px solid #f0c040;
+  background: #111;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 8px;
+  overflow: hidden;
+}
+
+#strat-icon {
+  width: 250px;
+  height: 250px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.upcoming-icon {
+  width: 230px;
+  height: 230px;
+  min-width: 230px;
+  border: 1px solid #888;
+  background: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.8;
+}
+
+.upcoming-icon img {
+  width: 230px;
+  width: 230px;
+  object-fit: contain;
+}
+
+#strat-name {
+  background: #f0c040;
+  color: #000;
+  font-size: 3rem;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  padding: 2px 4px;
+  text-align: center;
+  width: 100%;
+}
+
+#round-display {
+  min-width: 200px;
+  flex-shrink: 0;
+  text-align: left;
+}
+
+#round-label {
+  color: white;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+#round-num {
+  color: white;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+#score-display {
+  min-width: 120px;
+  text-align: right;
+}
+
+#game-total-score {
+  color: #f0c040;
+  font-size: 2.5rem;
+  font-weight: bold;
+  line-height: 1;
+}
+
+#score-label {
+  color: white;
+  font-size: 2rem;
+  letter-spacing: 3px;
+}
+
+#sequence {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 24px;
+}
+
+.arrow svg {
+  width: 48px;
+  height: 48px;
+  display: block;
+}
+
+.arrow.current svg,
+.arrow.upcoming svg {
+  fill: white;
+  opacity: 0.5;
+}
+
+.arrow.done svg {
+  fill: #f0c040;
+}
+
+.wrong .arrow.current svg,
+.wrong .arrow.done svg {
+  fill: #e05050;
+}
+
+.wrong .arrow.upcoming svg {
+  fill: #e05050;
+  opacity: 0.4;
+}
+
+#timer-track {
+  width: 100%;
+  height: 8px;
+  background: #444;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+#timer-bar {
+  height: 100%;
+  width: 100%;
+  background: yellow;
+  transition: width 0.05s linear;
+}
+
+/* ---- LEVEL COMPLETE SCREEN ---- */
+#lc-content {
+  width: 600px;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  padding: 32px 0;
+}
+
+.lc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.lc-label {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.lc-value {
+  color: #f0c040;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.lc-total .lc-label,
+.lc-total .lc-value {
+  font-size: 1.8rem;
+}
+
+/* ---- START / GAMEOVER / LEVELINTRO SCREENS ---- */
+#screen-start h1 {
+  font-size: 3rem;
+  color: #f0c040;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+#screen-start p,
+#screen-gameover p {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+#screen-start button,
+#screen-gameover button {
+  margin-top: 16px;
+  padding: 12px 32px;
+  font-family: "Barlow Condensed", sans-serif;
+  font-size: 1.1rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: #f0c040;
+  color: #000;
+  border: none;
+  cursor: pointer;
+}
+
+#screen-start button:hover,
+#screen-gameover button:hover {
+  background: white;
+}
+
+#level-num {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #f0c040;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+#cat {
+  font-size: 1.2rem;
+  color: white;
+  margin-top: 12px;
+  letter-spacing: 2px;
+}
