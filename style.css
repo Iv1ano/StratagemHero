@@ -10,7 +10,6 @@ body {
   color: white;
 }
 
-/* ---- SCREEN VISIBILITY ---- */
 /* all screens hidden by default */
 .screen {
   display: none;
@@ -27,7 +26,7 @@ body {
   padding: 40px;
 }
 
-/* ---- GAME SCREEN ---- */
+/* game screen display */
 #game-header {
   display: flex;
   justify-content: space-between;
@@ -97,7 +96,7 @@ body {
 #strat-name {
   background: #f0c040;
   color: #000;
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: bold;
   letter-spacing: 3px;
   text-transform: uppercase;
@@ -143,6 +142,8 @@ body {
   letter-spacing: 3px;
 }
 
+/* sequences */
+
 #sequence {
   display: flex;
   gap: 12px;
@@ -152,8 +153,8 @@ body {
 }
 
 .arrow svg {
-  width: 48px;
-  height: 48px;
+  width: 84px;
+  height: 84px;
   display: block;
 }
 
@@ -177,6 +178,8 @@ body {
   opacity: 0.4;
 }
 
+/* timer */
+
 #timer-track {
   width: 100%;
   height: 8px;
@@ -192,7 +195,7 @@ body {
   transition: width 0.05s linear;
 }
 
-/* ---- LEVEL COMPLETE SCREEN ---- */
+/* level complete screen */
 #lc-content {
   width: 600px;
   border-top: 2px solid white;
@@ -209,7 +212,7 @@ body {
 
 .lc-label {
   color: white;
-  font-size: 1.2rem;
+  font-size: 3rem;
   font-weight: bold;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -217,18 +220,18 @@ body {
 
 .lc-value {
   color: #f0c040;
-  font-size: 1.5rem;
+  font-size: 3rem;
   font-weight: bold;
 }
 
 .lc-total .lc-label,
 .lc-total .lc-value {
-  font-size: 1.8rem;
+  font-size: 4.5rem;
 }
 
-/* ---- START / GAMEOVER / LEVELINTRO SCREENS ---- */
+/* start / gameover / options */
 #screen-start h1 {
-  font-size: 3rem;
+  font-size: 5rem;
   color: #f0c040;
   letter-spacing: 4px;
   text-transform: uppercase;
@@ -236,8 +239,10 @@ body {
 }
 
 #screen-start p,
-#screen-gameover p {
-  font-size: 1.2rem;
+#screen-gameover p,
+#screen-options,
+#screen-gameover {
+  font-size: 4rem;
   margin-bottom: 8px;
 }
 
@@ -246,7 +251,7 @@ body {
   margin-top: 16px;
   padding: 12px 32px;
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 1.1rem;
+  font-size: 3rem;
   font-weight: bold;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -256,13 +261,48 @@ body {
   cursor: pointer;
 }
 
+#controls-select {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  min-width: 500px;
+  justify-content: space-between;
+}
+
+#controls-value {
+  flex: 1;
+  text-align: center;
+}
+
+#controls-select button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 8px 12px;
+  font-size: 3rem;
+}
+
+#back-btn {
+  margin-top: 48px;
+  padding: 16px 48px;
+  font-size: 2.5rem;
+  border: none;
+  text-transform: uppercase;
+  background: #f0c040;
+  font-family: "Barlow Condensed", sans-serif;
+  cursor: pointer;
+}
+
 #screen-start button:hover,
-#screen-gameover button:hover {
+#screen-gameover button:hover,
+#back-btn:hover {
   background: white;
 }
 
+/* level intro specific */
 #level-num {
-  font-size: 3rem;
+  font-size: 5rem;
   font-weight: bold;
   color: #f0c040;
   letter-spacing: 4px;
@@ -270,7 +310,7 @@ body {
 }
 
 #cat {
-  font-size: 1.2rem;
+  font-size: 3rem;
   color: white;
   margin-top: 12px;
   letter-spacing: 2px;

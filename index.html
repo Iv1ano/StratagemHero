@@ -14,9 +14,8 @@
         <div id="screen-start" class="screen">
             <h1>Stratagem Hero</h1>
             <p>High Score: <span id="start-high-score"></span></p>
-            <button id="start-btn">Start</button>
-            <button id="btn-arrows">Arrow Keys</button>
-            <button id="btn-wasd">WASD</button>
+            <p>Press any stratagem key to start!</p>
+            <button id="options-btn">Options</button>
         </div>
 
         <div id="screen-levelintro" class="screen">
@@ -30,26 +29,32 @@
                     <div id="round-label">Round <span
                             id="round-num"></span></div>
                 </div>
-
                 <div id="strat-center">
                     <div id="strat-icon-queue">
                         <div id="strat-icon-box">
                             <img id="strat-icon" src alt>
                         </div>
-                        </div>
-                        <div id="strat-name"></div>
-                        <div id="sequence"></div>
-                        <div id="timer-track">
-                            <div id="timer-bar"></div>
-                        </div>
                     </div>
-                    <div id="score-display">
-                        <div id="game-total-score"></div>
-                        <div id="score-label">SCORE</div>
+                    <div id="strat-name"></div>
+                    <div id="sequence"></div>
+                    <div id="timer-track">
+                        <div id="timer-bar"></div>
                     </div>
                 </div>
-
+                <div id="score-display">
+                    <div id="game-total-score"></div>
+                    <div id="score-label">SCORE</div>
+                </div>
             </div>
+        </div>
+
+        <div id="screen-options" class="screen">
+            <div id="controls-select">
+                <button id="controls-prev">&#8592;</button>
+                <span id="controls-value">ARROW KEYS</span>
+                <button id="controls-next">&#8594;</button>
+            </div>
+            <button id="back-btn">Back to Start</button>
         </div>
 
         <div id="screen-levelcomplete" class="screen">
@@ -77,7 +82,6 @@
             <h2>Mission Failed</h2>
             <p>Total Score: <span id="go-total-score"></span></p>
             <p>High Score: <span id="go-high-score"></span></p>
-            <button id="retry-btn">Try Again</button>
         </div>
 
         <script src="game.js"></script>

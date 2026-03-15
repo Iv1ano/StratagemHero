@@ -81,6 +81,10 @@ const startHighScoreEl = document.getElementById("start-high-score");
 // --- INIT ---
 async function init() {
   stratList = await (await fetch("assets/stratagems.json")).json();
+  for (let i = 0; i < stratList.length; i++) {
+    const img = new Image();
+    img.src = `assets/icons/${stratList[i].icon}`;
+  }
   startHighScoreEl.textContent = highScore;
   showScreen("start");
 }
@@ -96,8 +100,8 @@ function showScreen(name) {
 // --- LEVEL CONFIG ---
 function levelConfig(levelNumber) {
   const count = Math.min(5 + Math.floor(levelNumber / 2), 15);
-  const timeLimit = Math.max(10 - Math.floor(levelNumber / 3), 5);
-  const hasCat = Math.random() < 0.3 || levelNumber % 5 === 0;
+  const timeLimit = Math.max(10 - Math.floor(levelNumber / 3), 3);
+  const hasCat = Math.random() < 0.2 || levelNumber % 5 === 0;
   const cat = hasCat
     ? stratCats[Math.floor(Math.random() * stratCats.length)]
     : null;
@@ -304,25 +308,59 @@ function endGame() {
   goTotalEl.textContent = totalScore;
   goHighScoreEl.textContent = highScore;
   showScreen("gameover");
+
+  transitionTimeout = setTimeout(() => {
+    startHighScoreEl.textContent = highScore;
+    showScreen("start");
+  }, 5000);
+}
+
+//options page event handling
+const controlOpts = ["arrows", "wasd"];
+let controlIndex = controlOpts.indexOf(inputScheme);
+
+document.getElementById("options-btn").addEventListener("click", () => {
+  showScreen("options");
+});
+
+document.getElementById("controls-prev").addEventListener("click", () => {
+  controlIndex = cycleIndex(controlIndex, -1, controlOpts.length);
+  updateControlDisplay();
+});
+
+document.getElementById("controls-next").addEventListener("click", () => {
+  controlIndex = cycleIndex(controlIndex, +1, controlOpts.length);
+  updateControlDisplay();
+});
+
+document.getElementById("back-btn").addEventListener("click", () => {
+  showScreen("start");
+});
+
+function cycleIndex(current, direction, total) {
+  return (current + direction + total) % total;
+}
+
+function updateControlDisplay() {
+  const scheme = controlOpts[controlIndex];
+  document.getElementById("controls-value").textContent =
+    scheme === "arrows" ? "ARROW KEYS" : "WASD";
+  currentKeyMap = keyMaps[scheme];
+  localStorage.setItem("inputScheme", scheme);
 }
 
 // --- EVENT LISTENERS ---
 document.addEventListener("keydown", (e) => {
   const direction = currentKeyMap[e.key];
-  if (direction) handleInput(direction);
-});
+  if (!direction) return;
 
-document.getElementById("start-btn").addEventListener("click", startGame);
-document
-  .getElementById("retry-btn")
-  .addEventListener("click", () => showScreen("start"));
-document.getElementById("btn-arrows").addEventListener("click", () => {
-  currentKeyMap = keyMaps.arrows;
-  localStorage.setItem("inputScheme", "arrows");
-});
-document.getElementById("btn-wasd").addEventListener("click", () => {
-  currentKeyMap = keyMaps.wasd;
-  localStorage.setItem("inputScheme", "wasd");
+  const activeScreen = document.querySelector(".screen.active")?.id;
+
+  if (activeScreen === "screen-start") {
+    startGame();
+  } else if (activeScreen === "screen-game") {
+    handleInput(direction);
+  }
 });
 
 init();

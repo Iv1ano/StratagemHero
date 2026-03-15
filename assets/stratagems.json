@@ -35,7 +35,7 @@
   { "name": "Orbital 380mm HE Barrage",  "category": "orbital", "icon": "Orbital_380mm_HE_Barrage_Stratagem_Icon.svg",  "sequence": ["right", "down", "up", "up", "left", "down", "down"] },
   { "name": "Orbital Walking Barrage",   "category": "orbital", "icon": "Orbital_Walking_Barrage_Stratagem_Icon.svg",   "sequence": ["right", "down", "right", "down", "right", "down"] },
   { "name": "Orbital Laser",             "category": "orbital", "icon": "Orbital_Laser_Stratagem_Icon.svg",             "sequence": ["right", "down", "up", "right", "down"] },
-  { "name": "Orbital Napalm Barrage",    "category": "orbital", "icon": "Orbital_Napalm_Barrage_Stratagem_Icon.svg",    "sequence": ["right", "right", "down", "up", "right", "down"] },
+  { "name": "Orbital Napalm Barrage",    "category": "orbital", "icon": "Orbital_Napalm_Barrage_Stratagem_Icon.svg",    "sequence": ["right", "right", "down", "left", "right", "up"] },
   { "name": "Orbital Railcannon Strike", "category": "orbital", "icon": "Orbital_Railcannon_Strike_Stratagem_Icon.svg", "sequence": ["right", "up", "down", "down", "right"] },
 
   { "name": "MG-43 Machine Gun",               "category": "support", "icon": "Machine_Gun_Stratagem_Icon.svg",              "sequence": ["down", "left", "down", "up", "right"] },
