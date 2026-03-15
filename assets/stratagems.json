@@ -401,7 +401,7 @@
   {
     "name": "B/FLAM-80 Cremator",
     "category": "support",
-    "icon": "B-FLAM-80_Cremator_Stratagem_Icon",
+    "icon": "B-FLAM-80_Cremator_Stratagem_Icon.svg",
     "sequence": ["down", "left", "up", "left", "up", "up"]
   },
 
