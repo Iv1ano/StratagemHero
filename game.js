@@ -193,6 +193,7 @@ function startLevel() {
   }
 
   showScreen("game");
+  startTimer();
   startRound();
 }
 
@@ -205,7 +206,6 @@ function startRound() {
   stratIconEl.src = `assets/icons/${currentStrat.icon}`;
   renderUpcomingIcons();
   renderSequence(currentStrat.sequence);
-  startTimer();
   isRunning = true;
 }
 
@@ -234,8 +234,12 @@ function handleInput(key) {
       const stratScore = currentStrat.sequence.length * 10;
       totalScore += stratScore;
       stratsDoneThisLevel++;
-      renderHUD();
 
+      const boost = 800;
+      const maxTime = currentLevelConfig.timeLimit * 1000;
+      timeLeft = Math.min(timeLeft + boost, maxTime);
+
+      renderHUD();
       setTimeout(() => {
         stratsDoneThisLevel >= currentLevelConfig.count
           ? endLevel()
