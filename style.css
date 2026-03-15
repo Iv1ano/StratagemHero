@@ -145,10 +145,12 @@ body {
 /* sequences */
 
 #sequence {
+  width: 100%;
   display: flex;
   gap: 12px;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  margin-top: 24px;
   margin-bottom: 24px;
 }
 
