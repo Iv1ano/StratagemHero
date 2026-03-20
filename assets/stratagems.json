@@ -101,7 +101,6 @@
     "icon": "Hellbomb_Stratagem_Icon.svg",
     "sequence": ["down", "up", "left", "down", "up", "right", "down", "up"]
   },
-
   {
     "name": "Eagle Strafing Run",
     "category": "eagle",
@@ -144,7 +143,6 @@
     "icon": "Eagle_500kg_Bomb_Stratagem_Icon.svg",
     "sequence": ["up", "right", "down", "down", "down"]
   },
-
   {
     "name": "Orbital Precision Strike",
     "category": "orbital",
@@ -217,7 +215,6 @@
     "icon": "Orbital_Railcannon_Strike_Stratagem_Icon.svg",
     "sequence": ["right", "up", "down", "down", "right"]
   },
-
   {
     "name": "MG-43 Machine Gun",
     "category": "support",
@@ -404,7 +401,6 @@
     "icon": "B-FLAM-80_Cremator_Stratagem_Icon.svg",
     "sequence": ["down", "left", "up", "left", "up", "up"]
   },
-
   {
     "name": "MD-6 Anti-Personnel Minefield",
     "category": "emplacement",
@@ -453,7 +449,6 @@
     "icon": "Anti-Tank_Emplacement_Stratagem_Icon.svg",
     "sequence": ["down", "up", "left", "right", "right", "right"]
   },
-
   {
     "name": "A/MG-43 Machine Gun Sentry",
     "category": "sentry",
@@ -507,6 +502,12 @@
     "category": "sentry",
     "icon": "Laser_Sentry_Stratagem_Icon.svg",
     "sequence": ["down", "up", "right", "down", "up", "right"]
+  },
+  {
+    "name": "A/GM-17 Gas Mortar Sentry",
+    "category": "sentry",
+    "icon": "Gas_Mortar_Sentry_Stratagem_Icon.svg",
+    "sequence": ["down", "up", "right", "down", "left"]
   },
 
   {
@@ -587,7 +588,6 @@
     "icon": "Warp_Pack_Stratagem_Icon.svg",
     "sequence": ["down", "left", "right", "down", "left", "right"]
   },
-
   {
     "name": "EXO-45 Patriot Exosuit",
     "category": "vehicle",

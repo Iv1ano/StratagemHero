@@ -1,8 +1,8 @@
-// --- PERSISTENCE ---
+// persisting thigns
 let highScore = localStorage.getItem("highScore") || 0;
 const inputScheme = localStorage.getItem("inputScheme") || "arrows";
 
-// --- CONSTANTS ---
+// vars declarations
 const keyMaps = {
   arrows: {
     ArrowUp: "up",
@@ -30,6 +30,41 @@ const catText = {
   emplacement: "Fortifications incoming!",
   backpack: "Get ready to carry some equipment!",
 };
+
+const sounds = {
+  coin2: new Audio("assets/sounds/coin2.wav"),
+  start: new Audio("assets/sounds/start.wav"),
+  correct1: new Audio("assets/sounds/correct1.wav"),
+  error1: new Audio("assets/sounds/error1.wav"),
+  hit1: new Audio("assets/sounds/hit4.wav"),
+  failure: new Audio("assets/sounds/failure.wav"),
+  failurefull: new Audio("assets/sounds/failurefull.wav"),
+  ready: new Audio("assets/sounds/ready.wav"),
+  success1: new Audio("assets/sounds/success1.wav"),
+  success2: new Audio("assets/sounds/success2.wav"),
+  success3: new Audio("assets/sounds/success3.wav"),
+  playing: new Audio("assets/sounds/playing.wav"),
+  strathero: new Audio("assets/sounds/stratagem_hero.wav"),
+};
+Object.values(sounds).forEach((sound) => {
+  sound.volume = 0.35;
+});
+sounds.playing.loop = true;
+
+//audio
+function playSound(sound) {
+  sound.currentTime = 0;
+  sound.play().catch(() => {});
+}
+
+function playMusic(sound) {
+  sound.play().catch(() => {});
+}
+
+function stopMusic(sound) {
+  sound.pause();
+  sound.currentTime = 0;
+}
 
 // --- STATE ---
 let stratList = [];
@@ -163,12 +198,15 @@ function renderSequence(sequence) {
 
 // --- GAME FLOW ---
 function startGame() {
+  playSound(sounds.coin2);
+  setTimeout(() => playSound(sounds.start), 500);
   totalScore = 0;
   currentLevel = 1;
   levelScore = 0;
   stratsDoneThisLevel = 0;
   levelPerfect = true;
   currentLevelConfig = levelConfig(currentLevel);
+
   showLevelIntro();
 }
 
@@ -182,11 +220,11 @@ function showLevelIntro() {
 }
 
 function startLevel() {
+  playMusic(sounds.playing);
   levelScore = 0;
   stratsDoneThisLevel = 0;
   levelPerfect = true;
   isRunning = true;
-
   levelQueue = [];
   for (let i = 0; i < currentLevelConfig.count; i++) {
     levelQueue.push(pickStratagem());
@@ -198,7 +236,6 @@ function startLevel() {
 }
 
 function startRound() {
-  perfectRound = true;
   inputIndex = 0;
   currentStrat = levelQueue[stratsDoneThisLevel];
   stratNameEl.textContent = currentStrat.name;
@@ -227,11 +264,13 @@ function renderUpcomingIcons() {
 function handleInput(key) {
   if (!isRunning) return;
   if (key === currentStrat.sequence[inputIndex]) {
+    playSound(sounds.hit1);
     inputIndex++;
     renderSequence(currentStrat.sequence);
     if (inputIndex === currentStrat.sequence.length) {
       isRunning = false;
       const stratScore = currentStrat.sequence.length * 10;
+      levelScore += stratScore;
       totalScore += stratScore;
       stratsDoneThisLevel++;
 
@@ -247,6 +286,7 @@ function handleInput(key) {
       }, 400);
     }
   } else {
+    playSound(error1);
     isRunning = false;
     perfectRound = false;
     inputIndex = 0;
@@ -266,6 +306,7 @@ function endLevel() {
   console.log("endLevel called");
   clearInterval(timerInterval);
   clearTimeout(transitionTimeout);
+  stopMusic(sounds.playing);
   isRunning = false;
 
   const roundBonus = 75 + 25 * (currentLevel - 1);
@@ -279,6 +320,7 @@ function endLevel() {
   lcPerfectEl.textContent = perfectBonus;
   lcTotalScoreEl.textContent = totalScore;
   showScreen("levelcomplete");
+  playSound(sounds.success1);
 
   transitionTimeout = setTimeout(() => {
     currentLevel++;
@@ -290,6 +332,7 @@ function endLevel() {
 function endGame() {
   clearInterval(timerInterval);
   clearTimeout(transitionTimeout);
+  stopMusic(sounds.playing);
   isRunning = false;
 
   if (totalScore > highScore) {
@@ -300,10 +343,14 @@ function endGame() {
   goTotalEl.textContent = totalScore;
   goHighScoreEl.textContent = highScore;
   showScreen("gameover");
+  sounds.failurefull.play();
+  sounds.failurefull.currentTime = 0;
 
   transitionTimeout = setTimeout(() => {
     startHighScoreEl.textContent = highScore;
     showScreen("start");
+    sounds.ready.play();
+    sounds.ready.currentTime = 0;
   }, 5000);
 }
 
