@@ -286,9 +286,8 @@ function handleInput(key) {
       }, 400);
     }
   } else {
-    playSound(error1);
+    playSound(sounds.error1);
     isRunning = false;
-    perfectRound = false;
     inputIndex = 0;
     levelPerfect = false;
     seqEl.classList.add("wrong");
@@ -343,8 +342,7 @@ function endGame() {
   goTotalEl.textContent = totalScore;
   goHighScoreEl.textContent = highScore;
   showScreen("gameover");
-  sounds.failurefull.play();
-  sounds.failurefull.currentTime = 0;
+  playSound(sounds.failurefull);
 
   transitionTimeout = setTimeout(() => {
     startHighScoreEl.textContent = highScore;
